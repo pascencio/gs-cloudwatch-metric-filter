@@ -1,1 +1,2 @@
-export { default as hello } from './hello';
+export { default as slack } from './slack';
+export { default as trace } from './trace';

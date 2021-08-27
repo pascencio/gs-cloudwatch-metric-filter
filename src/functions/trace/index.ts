@@ -14,7 +14,7 @@ export default {
             'application/json': schema
           }
         }
-      }
+      },
     }
   ]
 }
