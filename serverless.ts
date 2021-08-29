@@ -62,7 +62,7 @@ const serverlessConfiguration: AWS = {
           ComparisonOperator: 'GreaterThanThreshold',
           Period: '300',
           Statistic: 'Sum',
-          Unit: 'Count',
+          // Unit: 'Count',
           Threshold: '10',
           EvaluationPeriods: '1',
           MetricName: 'payment-unired-error'
