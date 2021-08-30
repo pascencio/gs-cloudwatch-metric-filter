@@ -24,6 +24,8 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+      SLACK_TOKEN: process.env.SLACK_TOKEN,
+      SLACK_CHANNEL: process.env.SLACK_CHANNEL
     },
     lambdaHashingVersion: '20201221',
   },
@@ -51,18 +53,17 @@ const serverlessConfiguration: AWS = {
       },
       TraceAlarm: {
         Type: 'AWS::CloudWatch::Alarm',
-        DependsOn: ['TraceMetricFilter', 'SNSTopicTraceAlarmDispatcher'],
+        DependsOn: ['TraceMetricFilter', 'SNSTopicSlackAlarmDispatcher'],
         Properties: {
           AlarmDescription: '10 Errores en Pago Unired en 5 minutos',
           AlarmActions: [{
-            'Ref': 'SNSTopicTraceAlarmDispatcher'
+            'Ref': 'SNSTopicSlackAlarmDispatcher'
           }],
           AlarmName: 'UniredPaymentError',
           Namespace: '/gs-cloudwatch-metric-filter/dev',
           ComparisonOperator: 'GreaterThanThreshold',
           Period: '300',
           Statistic: 'Sum',
-          // Unit: 'Count',
           Threshold: '10',
           EvaluationPeriods: '1',
           MetricName: 'payment-unired-error'

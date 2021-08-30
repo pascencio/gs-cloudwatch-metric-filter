@@ -4,7 +4,7 @@ export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
   events: [
     {
-      sns: 'TraceAlarmDispatcher'
+      sns: 'SlackAlarmDispatcher'
     }
   ]
 }
